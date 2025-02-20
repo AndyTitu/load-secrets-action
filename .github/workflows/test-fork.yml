@@ -1,6 +1,6 @@
 on:
   repository_dispatch:
-    types: [ ok-to-test-command ]
+    types: [ok-to-test-command]
 name: Run acceptance tests [fork]
 
 jobs:
@@ -172,8 +172,14 @@ jobs:
     if: ${{ always() }}
     strategy:
       matrix:
-        job-name: [test-with-output-secrets, test-with-export-env, test-references-with-ids]
-    needs: [test-with-output-secrets, test-with-export-env, test-references-with-ids]
+        job-name:
+          [
+            test-with-output-secrets,
+            test-with-export-env,
+            test-references-with-ids,
+          ]
+    needs:
+      [test-with-output-secrets, test-with-export-env, test-references-with-ids]
     steps:
       - uses: actions/github-script@v6
         env:

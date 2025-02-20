@@ -14,12 +14,12 @@ jobs:
     # Only run for PRs, not issue comments
     if: ${{ github.event.issue.pull_request }}
     steps:
-    - name: Slash Command Dispatch
-      uses: peter-evans/slash-command-dispatch@v3
-      with:
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} 
-        reaction-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-type: pull-request
-        commands: ok-to-test
-        # The repository permission level required by the user to dispatch commands. Only allows 1Password collaborators to run this.
-        permission: write
+      - name: Slash Command Dispatch
+        uses: peter-evans/slash-command-dispatch@v3
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          reaction-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-type: pull-request
+          commands: ok-to-test
+          # The repository permission level required by the user to dispatch commands. Only allows 1Password collaborators to run this.
+          permission: write
