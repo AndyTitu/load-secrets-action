@@ -16,6 +16,7 @@ jobs:
       - run: npm test
 
   test-with-output-secrets:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
@@ -60,6 +61,7 @@ jobs:
           MULTILINE_SECRET: ${{ steps.load_secrets.outputs.MULTILINE_SECRET }}
         run: ./tests/assert-env-set.sh
   test-with-export-env:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
@@ -104,6 +106,7 @@ jobs:
       - name: Assert removed secrets
         run: ./tests/assert-env-unset.sh
   test-references-with-ids:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
