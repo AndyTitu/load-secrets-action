@@ -1,11 +1,7 @@
 name: The Reusable Workflow
 
 on:
-  workflow_call:
-    inputs:
-      test-name:
-        required: true
-        type: string
+  [workflow_call]
 
 jobs:
   test:
